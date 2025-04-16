@@ -28,7 +28,7 @@
 .start-game {
     position: absolute;
     top: 52%;
-    left: 50%;
+    left: 51%;
     transform: translate(-50%, -50%);
     width: 519px;
     height: 519px;
@@ -40,6 +40,7 @@
     align-items: center;
     color: #4d8c57; 
     text-align: center;
+    border-radius: 20px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(77, 140, 87, 0.2);
 }
