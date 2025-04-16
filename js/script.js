@@ -49,6 +49,10 @@ const spacing = 2;
 
 const snake = [{ x: 270, y: 240 }];
 
+const scoreResult = () => {
+    score.innerText = parseInt(score.innerText) + 1;
+};
+
 const randomNumber = (min, max) =>
     Math.round(Math.random() * (max - min) + min);
 
