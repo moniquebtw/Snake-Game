@@ -7,9 +7,9 @@ const button = document.querySelector('.btn-play');
 const buttonStart = document.querySelector('#start');
 const start = document.querySelector('.start-game');
 
-const eatSound = new Audio('eat-food.mp3');
-const startSound = new Audio('start-game.mp3');
-const bgSound = new Audio('bg-audio.mp3');
+const eatSound = new Audio('./assets/audio/eat-food.mp3');
+const startSound = new Audio('./assets/audio/start-game.mp3');
+const bgSound = new Audio('./assets/audio/bg-audio.mp3');
 
 const preloadAudio = (audio) => audio.load();
 [eatSound, startSound, bgSound].forEach(preloadAudio);
