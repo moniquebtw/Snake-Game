@@ -6,6 +6,7 @@ const menu = document.querySelector('.menu-screen');
 const button = document.querySelector('.btn-play');
 const buttonStart = document.querySelector('#start');
 const start = document.querySelector('.start-game');
+const buttonMenu = document.getElementById('menu');;
 
 const eatSound = new Audio('./assets/audio/eat-food.mp3');
 const startSound = new Audio('./assets/audio/start-game.mp3');
@@ -32,14 +33,14 @@ const spacing = 2;
 
 const snake = [{ x: 270, y: 240 }];
 
-const scoreResult = () => {
+const incrementScoreResult = () => {
     score.innerText = parseInt(score.innerText) + 1;
 };
 
 const randomNumber = (min, max) =>
     Math.round(Math.random() * (max - min) + min);
 
-const randomPosition = () => {
+const generateRandomGridPosition = () => {
     const number = randomNumber(0, canvas.width - size);
     return Math.round(number / 30) * 30;
 };
@@ -78,8 +79,8 @@ const loadAllImages = async () => {
 };
 
 const food = {
-    x: randomPosition(),
-    y: randomPosition(),
+    x: generateRandomGridPosition(),
+    y: generateRandomGridPosition(),
     image: null
 };
 
@@ -89,7 +90,7 @@ const drawFood = () => {
     }
 };
 
-const snakePosition = () => {
+const drawSnake = () => {
     snake.forEach((pos, i) => {
         context.fillStyle = i === snake.length - 1 ? '#ffb8b8' : '#98FF98';
         context.fillRect(
@@ -118,18 +119,18 @@ const moveSnake = () => {
     canChangeDirection = true;
 };
 
-const eatVerify = () => {
+const checkIfFoodEaten = () => {
     const head = snake[snake.length - 1];
     if (head.x === food.x && head.y === food.y) {
-        scoreResult();
+        incrementScoreResult();
         eatSound.play();
         snake.push({ ...head });
 
-        let x = randomPosition();
-        let y = randomPosition();
+        let x = generateRandomGridPosition();
+        let y = generateRandomGridPosition();
         while (snake.some(pos => pos.x === x && pos.y === y)) {
-            x = randomPosition();
-            y = randomPosition();
+            x = generateRandomGridPosition();
+            y = generateRandomGridPosition();
         }
 
         food.x = x;
@@ -138,7 +139,7 @@ const eatVerify = () => {
     }
 };
 
-const collisionVerify = () => {
+const checkCollision = () => {
     const head = snake[snake.length - 1];
     const limit = canvas.width - size;
     const neck = snake.length - 2;
@@ -149,9 +150,7 @@ const collisionVerify = () => {
     if (wallCollision || selfCollision) {
         gameOver();
         document.querySelector('.btn-play').focus()
-
     }
-    
 };
 
 const gameOver = () => {
@@ -173,9 +172,9 @@ const gameLoop = (time = 0) => {
         drawBackground();
         drawFood();
         moveSnake();
-        snakePosition();
-        eatVerify();
-        collisionVerify();
+        drawSnake();
+        checkIfFoodEaten();
+        checkCollision();
         lastTime = time;
     }
 
@@ -216,8 +215,8 @@ const resetGame = () => {
     snake[0] = { x: 270, y: 240 };
     directionSnake = undefined;
     canChangeDirection = true;
-    food.x = randomPosition();
-    food.y = randomPosition();
+    food.x = generateRandomGridPosition();
+    food.y = generateRandomGridPosition();
     food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
 };
 
@@ -236,6 +235,14 @@ buttonStart.addEventListener('click', () => {
     resetGame();
     startGame();
 });
+
+buttonMenu.addEventListener('click', () => {
+    menu.style.display = 'none';
+    start.style.display = 'flex';
+    canvas.style.filter = 'none';
+    startSound.play();
+    document.getElementById("start").focus();
+})
 
 const saveScoreToRanking = () => {
     const playerNameInput = document.querySelector('#playerName');

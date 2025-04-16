@@ -122,6 +122,9 @@ canvas {
     transition: all 0.2s ease-in-out;
 }
 
+#menu {
+    margin-top: 2px;
+}
 .btn-play:hover {
     transform: translateY(-3px);
     box-shadow: 4px 4px 0 #ffffff, 6px 6px 0 #fd1e61;
