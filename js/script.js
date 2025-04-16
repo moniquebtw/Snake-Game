@@ -3,10 +3,11 @@ const context = canvas.getContext('2d');
 const score = document.querySelector('.score-value');
 const finalScore = document.querySelector('.final-score > span');
 const menu = document.querySelector('.menu-screen');
-const button = document.querySelector('.btn-play');
+const buttonRestart = document.querySelector('.btn-play');
 const buttonStart = document.querySelector('#start');
 const start = document.querySelector('.start-game');
-const buttonMenu = document.getElementById('menu');;
+const buttonMenu = document.getElementById('menu');
+const playerNameInput = document.querySelector('#playerName');
 
 const eatSound = new Audio('./assets/audio/eat-food.mp3');
 const startSound = new Audio('./assets/audio/start-game.mp3');
@@ -55,28 +56,32 @@ const foodImages = [
 const foodImageObjects = [];
 let foodReady = false;
 
-const loadImage = (src) => {
+function loadImage(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = src;
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(`Erro ao carregar: ${src}`);
+        img.onload = function () {
+            resolve(img);
+        };
+        img.onerror = function () {
+            reject(`Erro ao carregar: ${src}`);
+        };
     });
-};
+}
 
-const loadAllImages = async () => {
+async function loadAllImages() {
     try {
         const loaded = await Promise.all(foodImages.map(loadImage));
         foodImageObjects.push(...loaded);
         foodReady = true;
-        } catch (e) {
+    } catch (e) {
         console.error(e);
         if (foodImageObjects.length > 0) {
             foodReady = true;
             startGame();
         }
     }
-};
+}
 
 const food = {
     x: generateRandomGridPosition(),
@@ -90,8 +95,8 @@ const drawFood = () => {
     }
 };
 
-const drawSnake = () => {
-    snake.forEach((pos, i) => {
+function drawSnake() {
+    snake.forEach(function (pos, i) {
         context.fillStyle = i === snake.length - 1 ? '#ffb8b8' : '#98FF98';
         context.fillRect(
             pos.x + spacing / 2,
@@ -100,10 +105,9 @@ const drawSnake = () => {
             size - spacing
         );
     });
-};
+}
 
-let directionSnake;
-const moveSnake = () => {
+function moveSnake() {
     if (!directionSnake || !isGameRunning) return;
 
     const head = snake[snake.length - 1];
@@ -117,9 +121,9 @@ const moveSnake = () => {
     snake.push(newHead);
     snake.shift();
     canChangeDirection = true;
-};
+}
 
-const checkIfFoodEaten = () => {
+function checkIfFoodEaten() {
     const head = snake[snake.length - 1];
     if (head.x === food.x && head.y === food.y) {
         incrementScoreResult();
@@ -137,9 +141,9 @@ const checkIfFoodEaten = () => {
         food.y = y;
         food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
     }
-};
+}
 
-const checkCollision = () => {
+function checkCollision () {
     const head = snake[snake.length - 1];
     const limit = canvas.width - size;
     const neck = snake.length - 2;
@@ -149,14 +153,15 @@ const checkCollision = () => {
 
     if (wallCollision || selfCollision) {
         gameOver();
-        document.querySelector('.btn-play').focus()
+        document.querySelector('.btn-play').focus();
     }
 };
 
-const gameOver = () => {
+function gameOver() {
     directionSnake = undefined;
     isGameRunning = false;
     menu.style.display = 'flex';
+    playerNameInput.style.display = 'block'; 
     canvas.style.filter = 'blur(2px)';
     finalScore.innerText = score.innerText;
     saveScoreToRanking();
@@ -165,7 +170,7 @@ const gameOver = () => {
 let lastTime = 0;
 const interval = 150;
 
-const gameLoop = (time = 0) => {
+function gameLoop(time = 0) {
     const delta = time - lastTime;
     if (delta > interval) {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -181,7 +186,7 @@ const gameLoop = (time = 0) => {
     if (isGameRunning) requestAnimationFrame(gameLoop);
 };
 
-const startGame = () => {
+function startGame () {
     food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
     isGameRunning = true;
     lastTime = 0;
@@ -209,7 +214,7 @@ document.addEventListener("keydown", ({ key }) => {
     }
 });
 
-const resetGame = () => {
+function resetGame () {
     score.innerText = '00';
     snake.length = 1;
     snake[0] = { x: 270, y: 240 };
@@ -220,10 +225,11 @@ const resetGame = () => {
     food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
 };
 
-button.addEventListener('click', () => {
+buttonRestart.addEventListener('click', () => {
     menu.style.display = 'none';
     canvas.style.filter = 'none';
     startSound.play();
+    playerNameInput.style.display = 'none';
     resetGame();
     isGameRunning = true;
     requestAnimationFrame(gameLoop);
@@ -232,6 +238,7 @@ button.addEventListener('click', () => {
 buttonStart.addEventListener('click', () => {
     startSound.play();
     start.style.display = 'none';
+    playerNameInput.style.display = 'none'; 
     resetGame();
     startGame();
 });
@@ -243,9 +250,9 @@ buttonMenu.addEventListener('click', () => {
     resetGame();
     startSound.play();
     document.getElementById("start").focus();
-})
+});
 
-const saveScoreToRanking = () => {
+function saveScoreToRanking() {
     const playerNameInput = document.querySelector('#playerName');
     const playerName = playerNameInput.value.trim() || 'Anônimo';
     const playerScore = parseInt(score.innerText);
@@ -265,7 +272,7 @@ const saveScoreToRanking = () => {
     renderRanking();
 };
 
-const renderRanking = () => {
+function renderRanking() {
     const rankingList = document.querySelector('#rankingList');
     const ranking = JSON.parse(localStorage.getItem('snakeRanking')) || [];
 
@@ -280,7 +287,6 @@ const renderRanking = () => {
 document.addEventListener('DOMContentLoaded', renderRanking);
 loadAllImages();
 
-document.addEventListener("DOMContentLoaded", () =>{
-    document.getElementById("start").focus()
-
-})
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("start").focus();
+});
