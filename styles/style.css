@@ -7,13 +7,11 @@
     --borda4: #402B3A;
 }
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Press Start 2P", system-ui;
-
 }
 
 body {
@@ -62,7 +60,6 @@ canvas {
     margin-top: -10px;
 }
 
-
 .final-score {
     font-size: 1.6rem;
     font-weight: 600;
@@ -88,7 +85,6 @@ canvas {
     border-radius: 20px;
     text-align: center;
     position: absolute;
-
 }
 
 .game-over {
@@ -136,9 +132,8 @@ canvas {
     border: 10px solid var(--borda3); 
     box-shadow: 0 0 30px var(--borda3);
     transition: all 0.2s ease-in-out;
-    }
+}
         
-
 .music-toggle {
     position: fixed;
     top: 20px;
@@ -153,6 +148,9 @@ canvas {
     cursor: pointer;
     transition: transform 0.2s ease;
     z-index: 20;
+    i {
+        color: #534951;
+    }
 }
 
 .music-toggle:hover {
@@ -166,57 +164,8 @@ canvas {
 
 #start:focus {
     outline: none;
-    border: 2px solid var(--borda2); /* amarelo estilo arcade */
+    border: 2px solid var(--borda2); 
     box-shadow: 0 0 10px var(--borda2);
     transition: all 0.2s ease-in-out;
-}
-
-.top-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-    z-index: 9999;
-    margin-left: -990px;
-    width: 10px;
-    list-style: none;
-    gap: 20px;
-
-}
-
-.player-input input {
-    padding: 8px;
-    font-size: 16px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    border: 1px solid #70116b;
-    list-style: none;
-    width: 300px;
-    gap: 5px;
-
-
-}
-
-.ranking {
-    background: var(--borda4);
-    width: 300px;
-    padding: 12px 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    list-style: none;
-
-}
-
-.ranking h2 {
-    padding: 10px;
-}
-
-#rankingList {
-    list-style: none;
-    gap: 30px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
 }
 

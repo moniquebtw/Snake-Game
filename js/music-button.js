@@ -8,10 +8,10 @@ let musicPlaying = false;
 musicBtn.addEventListener('click', () => {
     if (musicPlaying) {
         bgMusic.pause();
-        musicBtn.textContent = '🔇';
+        musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
     } else {
         bgMusic.play();
-        musicBtn.textContent = '🎵';
+        musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
     }
     musicPlaying = !musicPlaying;
 });
@@ -19,7 +19,7 @@ musicBtn.addEventListener('click', () => {
 document.addEventListener('click', () => {
     if (!musicPlaying) {
         bgMusic.play();
-        musicBtn.textContent = '🎵';
+        musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
         musicPlaying = true;
     }
 }, { once: true });
