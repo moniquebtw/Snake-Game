@@ -139,100 +139,6 @@ canvas {
     }
         
 
-
-.start-game {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 519px;
-    height: 519px;
-    z-index: 2;
-
-    background-color: #fdf6f9e8;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #4d8c57; 
-    text-align: center;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(77, 140, 87, 0.2);
-}
-
-.start-game h1 {
-    font-size: 40px;
-    margin-bottom: 0.5rem;
-    color: #ff8dc7;
-    text-shadow: 2px 2px #fff;
-    width: 100%;
-}
-
-.start-game p {
-    font-size: 1rem;
-    color: #7fb58d; /* verde pastel */
-    margin-bottom: 24px;
-}
-
-.start-game button {
-    background-color: var(--borda3);
-    border: none;
-    color: #ff8dc7;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--borda2);
-    transition: all 0.3s ease;
-    animation: pulse 1s infinite ease-in-out;
-
-}
-
-.start-game button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--borda2);
-}
-
-
-
-@keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      box-shadow: 0 0 0px var(--borda2);
-    }
-    50% {
-      transform: scale(1.1);
-      box-shadow: 0 0 8px var(--borda2);
-    }
-  }
-
-
- figure {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
-
- .snake {
-    animation: up 1s infinite ease-in-out;
-    transform-origin: bottom center;
-    width: 100%;
-    top: 16%;
-    position: relative;
-}
-
-@keyframes up {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px); /* altura do pulo */
-    }
-}
-
 .music-toggle {
     position: fixed;
     top: 20px;
@@ -253,33 +159,6 @@ canvas {
     transform: scale(1.1);
     background-color: var(--borda2);
 }
-
-.rules-toggle {
-    position: fixed;
-    top: 20px;
-    right: 430px;
-    background-color: var(--borda2);
-    color: #fff;
-    border: none;
-    padding: 12px 16px;
-    font-size: 1.5rem;
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--borda4);
-    cursor: pointer;
-    animation: none !important;
-    z-index: 20;
-}
-
-.rules-toggle:hover {
-    transform: scale(1.1);
-    background-color: var(--borda2);
-}
-
-.rules-toggle i {
-    color: #534951;
-}
-
-
 
 #start {
     margin-top: 12px;
