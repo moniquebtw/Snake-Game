@@ -2,6 +2,10 @@ const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 const score = document.querySelector('.score-value');
 const finalScore = document.querySelector('.final-score > span');
+const menu = document.querySelector('.menu-screen');
+const button = document.querySelector('.btn-play');
+const buttonStart = document.querySelector('#start');
+const start = document.querySelector('.start-game');
 
 const bgImage = new Image();
 bgImage.src = './assets/img-canvas/graminha.png';
@@ -150,6 +154,14 @@ const gameOver = () => {
     finalScore.innerText = score.innerText;
 };
 
+const startGame = () => {
+    food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
+    isGameRunning = true;
+    lastTime = 0;
+    requestAnimationFrame(gameLoop);
+};
+
+
 let lastTime = 0;
 const interval = 150;
 
@@ -168,6 +180,34 @@ const gameLoop = (time = 0) => {
 
     if (isGameRunning) requestAnimationFrame(gameLoop);
 };
+
+const resetGame = () => {
+    score.innerText = '00';
+    snake.length = 1;
+    snake[0] = { x: 270, y: 240 };
+    directionSnake = undefined;
+    canChangeDirection = true;
+    food.x = randomPosition();
+    food.y = randomPosition();
+    food.image = foodImageObjects[Math.floor(Math.random() * foodImageObjects.length)];
+};
+
+button.addEventListener('click', () => {
+    menu.style.display = 'none';
+    canvas.style.filter = 'none';
+    startSound.play();
+    resetGame();
+    isGameRunning = true;
+    requestAnimationFrame(gameLoop);
+});
+
+buttonStart.addEventListener('click', () => {
+    startSound.play();
+    start.style.display = 'none';
+    resetGame();
+    startGame();
+});
+
 
 
 document.addEventListener("keydown", ({ key }) => {
