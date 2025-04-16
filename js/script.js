@@ -240,6 +240,7 @@ buttonMenu.addEventListener('click', () => {
     menu.style.display = 'none';
     start.style.display = 'flex';
     canvas.style.filter = 'none';
+    resetGame();
     startSound.play();
     document.getElementById("start").focus();
 })

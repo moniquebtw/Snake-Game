@@ -24,12 +24,6 @@ body {
     color:antiquewhite;
 }
 
-.border {
-    display: flex;
-    justify-content: center;
-    box-shadow: 8px 8px 16px rgba(88, 104, 92, 0.363);
-}
-
 canvas {
     background-color: #ffffff;
     margin: 10px;
@@ -40,6 +34,19 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.border-canvas {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 20px auto;
+    border-radius: 12px;
+    background-color: #fff; /* opcional, pra destacar */
+    border: 10px solid black;
+
 }
 
 .score {
