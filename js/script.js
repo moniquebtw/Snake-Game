@@ -269,6 +269,7 @@ const renderRanking = () => {
     });
 };
 
+
 document.addEventListener('DOMContentLoaded', renderRanking);
 loadAllImages();
 
