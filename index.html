@@ -8,10 +8,13 @@
 
 </head>
 <body>
+    <audio id="eat-sound" src="/assets/audio/eat-food.mp3" preload="auto"></audio>
+    <audio id="start-sound" src="/assets/audio/start-game.mp3" preload="auto"></audio>    
+
     <div class="score">score <span class="score-value">00</span>  </div>
 
     <div class="start-game">
-
+        <button class="music-toggle" id="musicBtn">🎵</button>
         <figure>
             <img src="/assets/img-start/snake-green.png" alt="snake" class="snake">
         </figure>
@@ -46,5 +49,6 @@
 
 
     <script src="js/script.js"></script>
+    <script src="js/music-button.js"></script>
 </body>
 </html>
