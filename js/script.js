@@ -12,6 +12,10 @@ const drawBackground = () => {
     if (bgReady) context.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
 };
 
+let isGameRunning = false;
+let canChangeDirection = true;
+
+
 const loadImage = (src) => {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -21,11 +25,44 @@ const loadImage = (src) => {
     });
 };
 
+const loadAllImages = async () => {
+    try {
+        const loaded = await Promise.all(foodImages.map(loadImage));
+        foodImageObjects.push(...loaded);
+        foodReady = true;
+        } catch (e) {
+        console.error(e);
+        if (foodImageObjects.length > 0) {
+            foodReady = true;
+            startGame();
+        }
+    }
+};
+
 const size = 30;
 const foodSize = 30;
 const spacing = 2;
 
 const snake = [{ x: 270, y: 240 }];
+
+const randomNumber = (min, max) =>
+    Math.round(Math.random() * (max - min) + min);
+
+const randomPosition = () => {
+    const number = randomNumber(0, canvas.width - size);
+    return Math.round(number / 30) * 30;
+};
+
+
+const foodImages = [
+    './assets/img-canvas/morango.png',
+    './assets/img-canvas/macas.png',
+    './assets/img-canvas/cereja.png',
+    './assets/img-canvas/cogumelo.png'
+];
+const foodImageObjects = [];
+let foodReady = false;
+
 
 const food = {
     x: randomPosition(),
@@ -105,6 +142,32 @@ const collisionVerify = () => {
     
 };
 
+const gameOver = () => {
+    directionSnake = undefined;
+    isGameRunning = false;
+    menu.style.display = 'flex';
+    canvas.style.filter = 'blur(2px)';
+    finalScore.innerText = score.innerText;
+};
+
+let lastTime = 0;
+const interval = 150;
+
+const gameLoop = (time = 0) => {
+    const delta = time - lastTime;
+    if (delta > interval) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
+        drawFood();
+        moveSnake();
+        snakePosition();
+        eatVerify();
+        collisionVerify();
+        lastTime = time;
+    }
+
+    if (isGameRunning) requestAnimationFrame(gameLoop);
+};
 
 
 document.addEventListener("keydown", ({ key }) => {
