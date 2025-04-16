@@ -53,4 +53,27 @@
     cursor: pointer;
   }
   
-  
+  .rules-toggle {
+    position: fixed;
+    top: 20px;
+    right: 430px;
+    background-color: var(--borda2);
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--borda4);
+    cursor: pointer;
+    animation: none !important;
+    z-index: 20;
+}
+
+.rules-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--borda2);
+}
+
+.rules-toggle i {
+    color: #534951;
+}
