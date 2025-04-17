@@ -25,13 +25,13 @@ Este projeto foi desenvolvido para praticar lógica de programação, manipulaç
 
 ```bash
 #Clone o repositório
-git clone https://github.com/seu-usuario/snake-game.git
+git clone https://github.com/moniquebtw/snake-game.git
 
 # Acesse o diretório do projeto
 cd snake-game
 
 # Abra o arquivo index.html no navegador
-
+```
 ## 📂 Estrutura do Projeto
 
 ```plaintext
@@ -68,3 +68,12 @@ snake-game/
 │
 ├── index.html
 └── README.md
+```
+
+## 👩‍💻 Autor
+
+Desenvolvido por **Monique Gomes da Silva**.  
+Para mais detalhes técnicos e planejamento do projeto, consulte a [Documentação Completa](https://docs.google.com/document/d/1nV6g9hOpnGAlV-EBIVhkeKQDNso9c7708THyWqTBz1M/edit?tab=t.0).
+
+
+
