@@ -35,6 +35,7 @@
     flex-direction: column;
     gap: 20px;
     list-style: none;
+    text-align: left;
     color: #838082;
 }
 
