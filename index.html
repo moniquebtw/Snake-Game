@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/start-game.css">
+    <link rel="stylesheet" href="styles/ranking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 <body>
+    <audio id="eat-sound" src="/assets/audio/eat-food.mp3" preload="auto"></audio>
+    <audio id="start-sound" src="/assets/audio/start-game.mp3" preload="auto"></audio>    
+
     <div class="score">score <span class="score-value">00</span>  </div>
 
     <div class="start-game">
+        <button class="music-toggle" id="musicBtn"><i class="fa-solid fa-music"></i></button>
+        <button class="rules-toggle" id="rules"><i class="fa-solid fa-book"></i></button>
+        <div id="rulesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>How to Play</h2>
+            <ul>
+                <li>Use the arrow keys to control the snake.</li>
+                <li>Eat the food to grow and increase your score.</li>
+                <li>Don't hit the walls or your own tail.</li>
+                <li>Try to beat your high score.</li>
+                <li>One mistake ends the game. Stay sharp.</li>
+            </ul>
+        </div>
+        </div>
 
         <figure>
             <img src="/assets/img-start/snake-green.png" alt="snake" class="snake">
@@ -25,16 +47,29 @@
     </div>    
     <div class="top-panel">
         <div class="player-input">
-            <input type="text" id="playerName" placeholder="Enter your name">
+            <input type="text" id="playerName" placeholder="Enter your name" maxlength="15">
         </div>
     
+        <div class="ranking">
+            <h2>Ranking</h2>
+            <ul id="rankingList"></ul>
+        </div>
+    </div>
+    <div class="menu-screen">
+        <span class="game-over">game over</span>
+        <span class="final-score">score <span> 00 </span></span>
+        <button class="btn-play" id="restart">Restart Game</button>
+        <button class="btn-play" id="menu">Menu</button>
+
+    </div>
+    </div>
 </div>
-</div>
-
-<canvas width="600" height="600"></canvas>    
 
 
+<canvas width="600" height="600"></canvas>  
 
     <script src="js/script.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/music-button.js"></script>
 </body>
 </html>

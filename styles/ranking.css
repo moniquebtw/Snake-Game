@@ -1,0 +1,45 @@
+.top-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 9999;
+    margin-left: -990px;
+    width: 10px;
+    list-style: none;
+    gap: 20px;
+}
+
+.player-input input {
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 3px solid #5D9B6F;
+    list-style: none;
+    width: 300px;
+    gap: 5px;
+}
+
+.ranking {
+    background: #5D9B6F;
+    width: 300px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    list-style: none;
+}
+
+.ranking h2 {
+    padding: 10px;
+}
+
+#rankingList {
+    list-style: none;
+    gap: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
