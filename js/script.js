@@ -107,6 +107,7 @@ function drawSnake() {
     });
 }
 
+let directionSnake;
 function moveSnake() {
     if (!directionSnake || !isGameRunning) return;
 
